@@ -14,12 +14,17 @@ run:
 test:
 	go test -race ./...
 
+# Run unit + functional tests.
+.PHONY: test-all
+test-all:
+	go test -race -tags=func -cover -coverpkg=all -covermode=atomic -coverprofile=cover.out ./...
+
 # For basic lint you can use:
 # go vet ./... && golint ./...
 # For more torough checks, we recommend golangci-lint with default configuration.
 .PHONY: lint
 lint: check-golangcilint-bin
-	golangci-lint run --build-tags=integration ./...
+	golangci-lint run --build-tags=func ./...
 
 .PHONY: generate
 generate: generate-proto generate-go
