@@ -1,17 +1,15 @@
-# Go developers incomplete guide to writing a typical backend service ![Build](https://github.com/nglogic/go-application-guide/workflows/Build/badge.svg)
-
-## Testing
+# Testing
 
 Good testing is critical for any project. In this article, we won't focus on unit testing or test coverage. I'll try to explain the important parts to test and how to do it easily.
 
-### How good architecture helps with good testing
+## How good architecture helps with good testing
 
 Following clean architecture principles, we've decoupled the application, data access, and API layers. So now, we have contracts between them in the form of interfaces.
 What it means for testing is that now for each layer, we can substitute its dependencies with mocks. Therefore, we can test each layer in separation. Remember, interfaces can serve as mocking points!
 
 In the example application tests, we test all the components as a whole, focusing on functional testing. But still, we use this property to mock external services that we can't use for testing.
 
-### Testing the example app
+## Testing the example app
 
 There are a lot of articles about testing in Go. But in this guide, I want to focus on what's crucial - **functional testing**.
 
@@ -26,7 +24,7 @@ So we want to set up the test suite to cover as much of the code as possible usi
 
 For each functional test, we're going to prepare an API, listening on an actual network socket. It would be set up in the same way as in `cmd/app`, but with the test database and external service mocks. And in each test, we're going to create an actual GRPC client, make some GRPC requests and check the responses.
 
-#### Dealing with dependencies
+### Dealing with dependencies
 
 We have three external systems that our service needs to work: database, weather service, and bike incident service. There's no way to create actual, working weather or bike incident services. So for those, we'll use mocks. But we can create a local `Postgres` database using `Docker` and we're going to use `ory/dockertest` library for that.
 
@@ -38,7 +36,7 @@ For database I created a test helper function, that creates a `Postgres` contain
 
 If you want to know more about using and testing with Postgres in go, check out this great video: [GopherCon 2020: Johan Brandhorst-Satzkorn - A Journey to Postgres Productivity with Go](https://www.youtube.com/watch?v=AgHdVPSty7k)
 
-#### Testing API
+### Testing API
 
 We have to have some helper function to set up the whole API for the test (this big container named "Rental API" in the diagram above). It's implemented in: `internal/test/testsetup.go, newFunctionalTestSetup`. `newFunctionalTestSetup` creates all the app components and composes them together into a fully functional service. Then it creates GRPC server that exposes this service, and the client that would be used for testing. 
 
@@ -53,7 +51,7 @@ The pattern for API testing looks like this:
 - Prepare a test request and send it to the server.
 - Check the response against the expected result.
 
-#### Separating "heavy" functional tests from unit tests
+### Separating "heavy" functional tests from "light" unit tests
 
 It's useful to be able to run only the fast tests, skipping those that require dependencies like databases or external services. So, for example, I like to have a "fast test" set up as a git hook (together with linting).
 It prevents me from committing broken code accidentally.
