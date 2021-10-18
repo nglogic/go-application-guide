@@ -178,6 +178,7 @@ func TestCreateBike(t *testing.T) {
 }
 
 // TestUpdateBike tests "CreateBike" API endpoint.
+//nolint:funlen // Long test function is probably ok.
 func TestUpdateBike(t *testing.T) {
 	existingBikeID := uuid.NewString()
 	notExistingBikeID := uuid.NewString()

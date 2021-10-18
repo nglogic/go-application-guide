@@ -136,6 +136,7 @@ func TestListReservationsTimeRange(t *testing.T) {
 }
 
 // TestCreateReservation tests "CreateReservation" API endpoint.
+//nolint:funlen // Long test function is probably ok.
 func TestCreateReservation(t *testing.T) {
 	t.Parallel()
 
@@ -261,6 +262,8 @@ func TestCreateReservation(t *testing.T) {
 	}
 }
 
+// TestCreateReservation_Discounts tests the discounting aspect of "CreateReservation" API endpoint.
+//nolint:funlen // Long test function is probably ok.
 func TestCreateReservation_Discounts(t *testing.T) {
 	t.Parallel()
 
@@ -583,6 +586,8 @@ func TestCreateReservation_Discounts(t *testing.T) {
 	}
 }
 
+// TestCreateReservation_Validation tests request validation for "CreateReservation" API endpoint.
+//nolint:funlen // Long test function is probably ok.
 func TestCreateReservation_Validation(t *testing.T) {
 	t.Parallel()
 
