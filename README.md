@@ -1,8 +1,10 @@
-# Go developers incomplete guide to writing a typical backend service ![Build](https://github.com/nglogic/go-application-guide/workflows/Build/badge.svg)
+# Go developers incomplete guide to writing a typical backend service
 
+![Build](https://github.com/nglogic/go-application-guide/workflows/Build/badge.svg)
 
-Table of contents
-- [Go developers incomplete guide to writing a typical backend service !Build](#go-developers-incomplete-guide-to-writing-a-typical-backend-service-)
+**Table of contents**
+
+- [Go developers incomplete guide to writing a typical backend service](#go-developers-incomplete-guide-to-writing-a-typical-backend-service)
   - [Intro](#intro)
     - [What is this repository?](#what-is-this-repository)
     - [Why this guide might be helpful to you](#why-this-guide-might-be-helpful-to-you)
@@ -14,8 +16,6 @@ Table of contents
   - [Guide to Go application design](#guide-to-go-application-design)
   - [Guide to writing Go packages hierarchy](#guide-to-writing-go-packages-hierarchy)
   - [Testing](#testing)
-    - [Unit tests](#unit-tests)
-    - [Integration tests](#integration-tests)
   - [Common functionalities in backend services](#common-functionalities-in-backend-services)
     - [Logging](#logging)
     - [Caching](#caching)
@@ -111,22 +111,7 @@ Let's start with explanation of example project, that will be used to talk about
 
 ## Testing
 
-TODO: **need help here, open for any discussion**
-
-### Unit tests
-
-TODO
-
-1. When
-2. How
-
-### Integration tests
-
-TODO
-
-1. How our architecture helps with tests
-2. When
-3. How
+[Guide to Go testing](/docs/testing/TESTING.md)
 
 ## Common functionalities in backend services
 
