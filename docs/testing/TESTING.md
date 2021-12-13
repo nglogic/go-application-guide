@@ -13,10 +13,12 @@ In the example application tests, we test all the components as a whole, focusin
 
 There are a lot of articles about testing in Go. But in this guide, I want to focus on what's crucial - **functional testing**.
 
-Why starting with functional testing?
+Why start with functional testing?
 
 1. API is the contract between our code and the user. Therefore, any unwanted change to that contract could result in failures on our client-side. Moreover, by introducing unwanted API behavior, we could not be aware that our client code is failing - we won't get any alerts or errors in the logs.
-2. Your code will evolve in time, but probably existing API endpoints will stay more or less the same. Therefore, having most of the testing code working on API won't be a maintenance burden when you want to change the internals. Actually, having functional tests will be a **huge** help when you want to do some heavy refactoring.
+2. Your code will evolve over time, but probably existing API endpoints will stay more or less the same. Therefore, writing tests based on the API will reduce the maintenance burden.
+Whenever you change the internal workings of the application, API level tests should work fine without any changes.
+Even more importantly, such tests would be a **huge** help in case of some heavy refactoring in the future.
 
 So we want to set up the test suite to cover as much of the code as possible using functional tests. The following diagram shows how the functional test case is going to look like:
 
